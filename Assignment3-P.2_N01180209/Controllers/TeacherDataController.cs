@@ -130,6 +130,37 @@ namespace Assignment3_P._2_N01180209.Controllers
 
             return NewTeacher;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <example>POST: /api/TeacherData/DeleteTeacher/{id}</example>
+        
+        [HttpPost]
+        public void DeleteTeacher (int id)
+        {
+            // Create an instance of a connection 
+            MySqlConnection Conn = School.AccessDatabase();
+
+            // Open the connection between the web server and database
+            Conn.Open();
+
+            // Establish a new command (query) for our database
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            // SQL Query
+            cmd.CommandText = "DELETE FROM teachers WHERE teacherid = @id";
+
+            // Parameters to protect against SQL Injection Attacks
+            cmd.Parameters.AddWithValue("id", id);
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
+            // Close connection
+            Conn.Close();
+        }
     }
 }
 

@@ -50,7 +50,16 @@ nav {
     float: right;
     padding: 10px;
     border: solid 2px #000000;
-    background-color: #ff6a00
+    background-color: #ff6a00;
+}
+
+.DelBtn {
+    float: left;
+    color: #ffffff;
+    margin: 0 auto;
+    background-color: #ff6a00;
+    border: 2px solid #000000;
+    border-radius:3px;
 }
 
 #containerlist, #containershow {

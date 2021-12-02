@@ -42,5 +42,16 @@ namespace Assignment3_P._2_N01180209.Controllers
 
             return View(NewTeacher);
         }
+
+
+        //POST: /Teacher/Delete/{id}
+        public ActionResult Delete(int id)
+        {
+            // Instantiating 
+            TeacherDataController controller = new TeacherDataController();
+            controller.DeleteTeacher(id);
+            return RedirectToAction("List");
+        }
+
     }
 }
