@@ -1,7 +1,25 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.85em;
 }
+
+a:link, a:visited,
+a:active, a:hover {
+    color: #000000;
+}
+
+a:hover {
+    text-decoration:underline;
+}
+
+h1, h2 {
+    font-size: 3em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -14,4 +32,33 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+
+nav {
+    overflow: hidden; 
+    margin-bottom: 30px;
+}
+.navlink {
+    float: left;
+    padding: 10px;
+    border: solid 2px #000000;
+    
+}
+.dellink {
+    color: #ffffff !important;
+    float: right;
+    padding: 10px;
+    border: solid 2px #000000;
+    background-color: #ff6a00
+}
+
+#containerlist, #containershow {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+
+.listitem {
+    margin: 15px 0;
 }
