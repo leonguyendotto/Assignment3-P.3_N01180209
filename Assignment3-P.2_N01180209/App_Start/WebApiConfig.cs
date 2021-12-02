@@ -16,7 +16,8 @@ namespace Assignment3_P._2_N01180209
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                // Change the route because I want to have a several actions to access difference views
+                routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
         }
