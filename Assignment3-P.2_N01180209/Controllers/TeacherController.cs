@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Assignment3_P._2_N01180209.Models;
+using System.Diagnostics;
 
 namespace Assignment3_P._2_N01180209.Controllers
 {
@@ -50,7 +51,47 @@ namespace Assignment3_P._2_N01180209.Controllers
             // Instantiating 
             TeacherDataController controller = new TeacherDataController();
             controller.DeleteTeacher(id);
+
             return RedirectToAction("List");
+        }
+
+        //GET : /Teacher/New
+        public ActionResult New()
+        {
+            return View();
+        }
+
+        //POST: /Teacher/Create
+        [HttpPost]
+        public ActionResult Create(string TeacherFname, string TeacherLname, string EmployeeNumber, DateTime HireDate, decimal Salary)
+        {
+            //Identify that this method is runnning
+            //Identify the inputs provided from the form 
+
+            Debug.WriteLine(TeacherFname);
+            Debug.WriteLine(TeacherLname);
+
+            if (TeacherFname == "" || TeacherLname == "" || EmployeeNumber == "")
+            {
+                return RedirectToAction("New");
+            }
+            else
+            {
+
+                //Create new Teacher Object
+                Teacher NewTeacher = new Teacher();
+                NewTeacher.TeacherFname = TeacherFname;
+                NewTeacher.TeacherLname = TeacherLname;
+                NewTeacher.EmployeeNumber = EmployeeNumber;
+                NewTeacher.HireDate = HireDate;
+                NewTeacher.Salary = Salary;
+
+
+                TeacherDataController controller = new TeacherDataController();
+                controller.AddTeacher(NewTeacher);
+
+                return RedirectToAction("List");
+            }
         }
 
     }

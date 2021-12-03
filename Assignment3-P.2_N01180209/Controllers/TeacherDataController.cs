@@ -132,7 +132,7 @@ namespace Assignment3_P._2_N01180209.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Delete data from the table
         /// </summary>
         /// <param name="id"></param>
         /// <example>POST: /api/TeacherData/DeleteTeacher/{id}</example>
@@ -152,10 +152,44 @@ namespace Assignment3_P._2_N01180209.Controllers
             // SQL Query
             cmd.CommandText = "DELETE FROM teachers WHERE teacherid = @id";
 
-            // Parameters to protect against SQL Injection Attacks
             cmd.Parameters.AddWithValue("id", id);
             cmd.Prepare();
+            cmd.ExecuteNonQuery();
 
+            // Close connection
+            Conn.Close();
+        }
+
+        /// <summary>
+        /// This will add new data to teacher table
+        /// </summary>
+        /// <param name="NewTeacher"></param>
+        /// <example>This is a POST request</example>
+        [HttpPost]
+        public void AddTeacher(Teacher NewTeacher)
+        {
+            // Create an instance of a connection 
+            MySqlConnection Conn = School.AccessDatabase();
+
+            // Open the connection between the web server and database
+            Conn.Open();
+
+            // Establish a new command (query) for our database
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            // SQL Query
+            cmd.CommandText = "INSERT INTO teachers (teacherfname, teacherlname, employeenumber, hiredate, salary) " +
+                "values (@teacherfname, @teacherlname, @employeenumber, @hiredate, @salary)";
+
+
+            //Create a new Teacher object to add value to the table
+            cmd.Parameters.AddWithValue("teacherfname", NewTeacher.TeacherFname);
+            cmd.Parameters.AddWithValue("teacherlname", NewTeacher.TeacherLname);
+            cmd.Parameters.AddWithValue("employeenumber", NewTeacher.EmployeeNumber);
+            cmd.Parameters.AddWithValue("hiredate", NewTeacher.HireDate);
+            cmd.Parameters.AddWithValue("salary", NewTeacher.Salary);
+
+            cmd.Prepare();
             cmd.ExecuteNonQuery();
 
             // Close connection
