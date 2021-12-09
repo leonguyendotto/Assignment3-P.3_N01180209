@@ -1,0 +1,39 @@
+﻿@model Assignment3_P._2_N01180209.Models.Teacher
+@{
+    ViewBag.Title = "Update";
+}
+
+<nav>
+    <a class="navlink" href="/Teacher/List">Back To Teacher List</a>
+</nav>
+<h2>Update</h2>
+<form method="POST" action="/Teacher/Update/@Model.TeacherId" onsubmit="ValidateForm();">
+    <div class="TeacherFinput">
+        <label for="teacherfname">First Name:</label>
+        <input type="text" id="teacherfname" name="teacherfname" value="@Model.TeacherFname"/>
+        <p id="FnErrorMsg"></p>
+    </div>
+    <div class="TeacherLinput">
+        <label for="teacherlname">Last Name:</label>
+        <input type="text" id="teacherlname" name="teacherlname" value="@Model.TeacherLname"/>
+        <p id="LnErrorMsg"></p>
+    </div>
+    <div class="TeacherEinput">
+        <label for="employeenumber">Employee Number:</label>
+        <input type="text" id="employeenumber" name="employeenumber" value="@Model.EmployeeNumber"/>
+        <p id="EnErrorMsg"></p>
+    </div>
+    <div class="TeacherSinput">
+        <label for="salary"> Desired Salary:</label>
+        <input type="text" id="salary" name="salary" value="@Model.Salary" />
+        <p id="SnErrorMsg"></p>
+    </div>
+    <div class="TeacherHinput">
+        <label for="hiredate">Hire Date:</label>
+        <input type="date" id="hiredate" name="hiredate" value="@Model.HireDate"/>
+    </div>
+
+    <div>
+        <button type="submit">Update Teacher</button>
+    </div>
+</form>

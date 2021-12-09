@@ -29,8 +29,9 @@ namespace Assignment3_P._2_N01180209.Controllers
         public ActionResult Show(int id)
         {
             TeacherDataController controller = new TeacherDataController();
-            Teacher NewTeacher = controller.FindTeacher(id);
-            return View(NewTeacher);
+            Teacher SelectedTeacher = controller.FindTeacher(id);
+
+            return View(SelectedTeacher);
         }
 
 
@@ -92,6 +93,17 @@ namespace Assignment3_P._2_N01180209.Controllers
 
                 return RedirectToAction("List");
             }
+
+        }
+
+        //GET : /Teacher/Update/{id}
+        public ActionResult Update(int id)
+        {
+
+            TeacherDataController controller = new TeacherDataController();
+            Teacher SelectedTeacher = controller.FindTeacher(id);
+
+            return View(SelectedTeacher);
         }
 
     }

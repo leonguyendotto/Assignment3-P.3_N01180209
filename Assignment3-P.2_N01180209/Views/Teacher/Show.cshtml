@@ -10,10 +10,11 @@
     <nav>
         <a class="navlink" href="/Teacher/List">Back To Teachers List</a>
         <a class="dellink" href="/Teacher/DeleteConfirm/@Model.TeacherId">Delete</a>
-    </nav>
+        <a class="navlink" href="/Teacher/Update/@Model.TeacherId">Update</a>
+
     <h2>Teacher Information</h2>
     <h3>First name:@Model.TeacherFname,  Last name:@Model.TeacherLname</h3>
     <p>Employee Number: @Model.EmployeeNumber</p>
-    <p>Hire Date: @Model.HireDate</p>
+    <p style="font-style:italic;">Hire Date: @Model.HireDate.ToString("dd-MMM-yyyy")</p>
     <p>Salary: @Model.Salary</p>
 </div>
