@@ -150,7 +150,7 @@ namespace Assignment3_P._2_N01180209.Controllers
             MySqlCommand cmd = Conn.CreateCommand();
 
             // SQL Query
-            cmd.CommandText = "DELETE FROM teachers WHERE teacherid = @id";
+            cmd.CommandText = "DELETE FROM teachers WHERE teacherid = id";
 
             cmd.Parameters.AddWithValue("id", id);
             cmd.Prepare();
@@ -166,7 +166,7 @@ namespace Assignment3_P._2_N01180209.Controllers
         /// <param name="NewTeacher"></param>
         /// <example>This is a POST request</example>
         [HttpPost]
-        public void AddTeacher(Teacher NewTeacher)
+        public void AddTeacher([FromBody]Teacher NewTeacher)
         {
             // Create an instance of a connection 
             MySqlConnection Conn = School.AccessDatabase();
@@ -183,11 +183,44 @@ namespace Assignment3_P._2_N01180209.Controllers
 
 
             //Create a new Teacher object to add value to the table
-            cmd.Parameters.AddWithValue("teacherfname", NewTeacher.TeacherFname);
-            cmd.Parameters.AddWithValue("teacherlname", NewTeacher.TeacherLname);
-            cmd.Parameters.AddWithValue("employeenumber", NewTeacher.EmployeeNumber);
-            cmd.Parameters.AddWithValue("hiredate", NewTeacher.HireDate);
-            cmd.Parameters.AddWithValue("salary", NewTeacher.Salary);
+            cmd.Parameters.AddWithValue("@teacherfname", NewTeacher.TeacherFname);
+            cmd.Parameters.AddWithValue("@teacherlname", NewTeacher.TeacherLname);
+            cmd.Parameters.AddWithValue("@employeenumber", NewTeacher.EmployeeNumber);
+            cmd.Parameters.AddWithValue("@hiredate", NewTeacher.HireDate);
+            cmd.Parameters.AddWithValue("@salary", NewTeacher.Salary);
+
+            cmd.Prepare();
+            cmd.ExecuteNonQuery();
+
+            // Close connection
+            Conn.Close();
+        }
+
+
+        public void UpdateTeacher (int id, [FromBody]Teacher TeacherInfo)
+        {
+            // Create an instance of a connection 
+            MySqlConnection Conn = School.AccessDatabase();
+
+            // Open the connection between the web server and database
+            Conn.Open();
+
+            // Establish a new command (query) for our database
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            // SQL Query
+            cmd.CommandText = "update teachers set teacherfname=@teacherfname, teacherlname=@teacherlname, employeenumber=@employeenumber, hiredate=@hiredate, salary= @salary " +
+                "where teacherid=@teacherid";
+
+
+            //Create a new Teacher object to add value to the table
+            cmd.Parameters.AddWithValue("@teacherfname", TeacherInfo.TeacherFname);
+            cmd.Parameters.AddWithValue("@teacherlname", TeacherInfo.TeacherLname);
+            cmd.Parameters.AddWithValue("@employeenumber", TeacherInfo.EmployeeNumber);
+            cmd.Parameters.AddWithValue("@hiredate", TeacherInfo.HireDate);
+            cmd.Parameters.AddWithValue("@salary", TeacherInfo.Salary);
+            cmd.Parameters.AddWithValue("@teacherid", id);
+
 
             cmd.Prepare();
             cmd.ExecuteNonQuery();
