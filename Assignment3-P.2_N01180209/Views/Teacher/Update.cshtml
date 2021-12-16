@@ -37,3 +37,45 @@
         <button type="submit">Update Teacher</button>
     </div>
 </form>
+
+
+<script>
+    function ValidateForm() {
+
+        //Variable for the form
+        var firstName = document.getElementById("teacherfname").value;
+        var lastName = document.getElementById("teacherlname").value;
+        var employeeRGEX = /^[N|n]\d{8}$/;
+        var userId = document.getElementById("employeenumber");
+        var salaryIn = document.getElementById("salary").value;
+
+        //Variable for output message
+        var FnOut = document.getElementById("FnErrorMsg");
+        var LnOut = document.getElementById("LnErrorMsg");
+        var EmOut = document.getElementById("EnErrorMsg");
+        var SaOut = document.getElementById("SnErrorMsg");
+
+        // Validating and preventing form submit after each click
+        if (firstName == "" | firstName == null) {
+            userFinput = document.getElementById("teacherfname");
+            userFinput.style.background = "red";
+            FnOut.innerHTML = "Fill your First name.";
+            event.preventDefault();
+        } else if (lastName == "" | lastName == null) {
+            userLinput = document.getElementById("teacherlname");
+            userLinput.style.background = "red";
+            LnOut.innerHTML = "Fill your Last name.";
+            event.preventDefault();
+        } else if (!employeeRGEX.test(userId.value)) {
+            userId.style.background = "red";
+            EmOut.innerHTML = "Start with N plus 8 random numbers"
+            event.preventDefault();
+        } else if (salaryIn == "" | salaryIn == null | salaryIn == isNaN) {
+            SaOut.innerHTML = "Enter your desired salary - We will update later!";
+            event.preventDefault();
+        }
+        else {
+            return true;
+        }
+    }
+</script>

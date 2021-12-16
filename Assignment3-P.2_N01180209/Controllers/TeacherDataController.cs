@@ -150,9 +150,9 @@ namespace Assignment3_P._2_N01180209.Controllers
             MySqlCommand cmd = Conn.CreateCommand();
 
             // SQL Query
-            cmd.CommandText = "DELETE FROM teachers WHERE teacherid = id";
+            cmd.CommandText = "DELETE FROM teachers WHERE teacherid = @teacher_id";
 
-            cmd.Parameters.AddWithValue("id", id);
+            cmd.Parameters.AddWithValue("@teacher_id", id);
             cmd.Prepare();
             cmd.ExecuteNonQuery();
 
